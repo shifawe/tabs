@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>tables</title>
+	<script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.min.js"></script>
+	<script src="tabs.js"></script>
+
+	<link rel="stylesheet" href="tabs.css">
+</head>
+<body>
+	<div class="table">
+		<!-- <ul class="hd">
+			<li class="item">2018</li>
+			<li class="item">2019</li>
+		</ul> -->
+		<div class="bd">
+			<div class="item">内容 1</div>
+			<div class="item">内容 2</div>
+			<div class="item">内容 3</div>
+			<div class="item">内容 4</div>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function(){
+			$(".table").Tables({
+				onindex: 1,
+				autoplay:2000,
+				timeout:555,
+				list:['全部信息']
+			});
+		})
+	</script>
+</body>
+</html>

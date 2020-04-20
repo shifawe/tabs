@@ -1,0 +1,30 @@
+@import "less/css3";
+@import "less/z";
+
+.reset-sina();
+
+.table{
+	border:1px solid #777;.bc-d(500px);margin-top: 50px;.box-shadow();font-size: 14px;color:#333;
+	.hd{
+		.txt-ver(34px);.flex-box;
+		.item{
+			.flex-item(1);background:#eee;.tc;cursor: pointer;
+			border-bottom: 1px solid #888;border-left: 1px solid #888;
+			&:first-child{
+				border-left:0
+			}
+		}
+		.on{
+			color:#42b983;background:#fff;border-bottom:0;
+		}
+	}
+	.bd{
+		height:200px;
+		.item{
+			padding:20px;display: none
+		}
+		.on{
+			display: block;
+		}
+	}
+}
