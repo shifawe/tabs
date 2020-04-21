@@ -1,13 +1,14 @@
 ;(function($){
 	$.fn.extend({
 		Tables: function(options){
-
 			this.options = {
 				event: 'click',
 				onindex: 1,
 				timeout: 0,
-				autoplay: 0,
-				list:[]
+				autoplay: 4000,
+				list:[],
+				arrow: false,
+				skin: 'tab-default'
 			}
 
 			//如果用户有传值 并且传的是{}或new obj的东西
@@ -40,9 +41,10 @@
 				}
 			}
 
+			options.skin && self.addClass(_options.skin);
 			self.prepend(hd);
 
-			var tabHandle = function(ele){
+			var tabHandle = function(ele) {
 				ele.siblings('.item').removeClass('on').end().addClass('on');
 				bd_li.siblings('.item').removeClass('on').end().eq(ele.index()).addClass('on');
 			}
@@ -55,14 +57,22 @@
 				delay($(this), _options.timeout);
 			});
 
-			var autoPlay = function(){
+			var autoPlay = function(idx, action){
 				var current = hd.find('li.on');
 				var firstItem = hd.find('li.item').eq(0);
 				var len = hd.find('li.item').length;
-				var index = current.index() + 1;
-				var item = index === len ? firstItem : current.next('li');
-				var i = index === len ? 0 : index;
+				var lastItem = hd.find('li.item').eq(len-1);
+				var index = current.index() + idx;
 
+				if(index < 0){
+					len = 0;
+					index = 0;
+				}
+
+				var child = index === 0 ? lastItem : firstItem;
+				var item = index === len ? child : current[action]('li');
+				var i = index === 0 ? len : index;
+			
 				current.removeClass('on');
 				item.addClass('on');
 
@@ -72,7 +82,22 @@
 
 			// 自动切换
 			var start = function(){
-				timer = setInterval( autoPlay, _options.autoplay );
+				timer = setInterval( function(){autoPlay(1, 'next')}, _options.autoplay );
+			}
+
+			if(_options.arrow == true) {
+				var prev = $('<span class="prev">＜</span>');
+				var next = $('<span class="next">＞</span>');
+				self.append(prev);
+				self.append(next);
+
+				prev.on('click', function(){
+					autoPlay(-1, 'prev')
+				});
+				next.on('click', function(){
+					autoPlay(1, 'next')
+				})
+
 			}
 
 			// 当用户传了 autoplay 值后

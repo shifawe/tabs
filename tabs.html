@@ -7,8 +7,8 @@
 
 	<link rel="stylesheet" href="tabs.css">
 </head>
-<body>
-	<div class="table">
+<body style="padding-bottom: 50px;">
+	<div class="table table1">
 		<!-- <ul class="hd">
 			<li class="item">2018</li>
 			<li class="item">2019</li>
@@ -20,12 +20,53 @@
 			<div class="item">内容 4</div>
 		</div>
 	</div>
+	<div class="table table2">
+		<div class="bd">
+			<div class="item">内容 1</div>
+			<div class="item">内容 2</div>
+			<div class="item">内容 3</div>
+			<div class="item">内容 4</div>
+		</div>
+	</div>
+	<div class="table table3">
+		<div class="bd">
+			<div class="item">内容 1</div>
+			<div class="item">内容 2</div>
+			<div class="item">内容 3</div>
+			<div class="item">内容 4</div>
+		</div>
+	</div>
+	<div class="table table4">
+		<div class="bd">
+			<div class="item">内容 1</div>
+			<div class="item">内容 2</div>
+			<div class="item">内容 3</div>
+			<div class="item">内容 4</div>
+		</div>
+	</div>
 	<script>
 		$(document).ready(function(){
-			$(".table").Tables({
+			$(".table1").Tables({
 				onindex: 1,
-				autoplay:2000,
-				timeout:555,
+				list:['全部信息']
+			});
+			$(".table2").Tables({
+				onindex: 3,
+				arrow: true,
+				timeout:300,
+				skin:'tab-orange'
+			});
+			$(".table3").Tables({
+				onindex: 2,
+				autoplay:4000,
+				arrow: true,
+				skin:'tab-violet',
+				list:['全部信息']
+			});
+			$(".table4").Tables({
+				onindex: 2,
+				event:'mouseover',
+				skin:'tab-green',
 				list:['全部信息']
 			});
 		})
