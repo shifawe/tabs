@@ -32,11 +32,11 @@
 				if(_options.list.length == 0 || _options.list.length != bd_li.length){
 					_options.list.push('默认Tab'+i);
 				}
+
 				if(_options.onindex-1 == i){
 					hd.append('<li class="item on">'+_options.list[i]+'</li>');
-					bd_li.eq(hd.find('.item').index()).addClass('on')
-				}
-				else{
+					bd_li.eq(i).addClass('on')
+				}else{
 					hd.append('<li class="item">'+_options.list[i]+'</li>');
 				}
 			}
@@ -64,19 +64,29 @@
 				var lastItem = hd.find('li.item').eq(len-1);
 				var index = current.index() + idx;
 
-				if(index < 0){
-					len = 0;
-					index = 0;
+	
+				// var child = index === 0 ? lastItem : firstItem;
+				// var item = index === len ? child : current[action]('li');
+				// var bd_i = index === 0 ? len : index;
+
+				// item 记录下一个要 显示的li元素, bd_li 记录下一个要显示的内容框位置。
+				var item, bd_i;
+				if(index == -1){
+					item = lastItem;
+					bd_i = len-1;
+				}else if(index == len){
+					item = firstItem;
+					bd_i = 0;
+				}else{
+					item = current[action]('li');
+					bd_i = index;
 				}
 
-				var child = index === 0 ? lastItem : firstItem;
-				var item = index === len ? child : current[action]('li');
-				var i = index === 0 ? len : index;
-			
+				// 删除原有on
 				current.removeClass('on');
-				item.addClass('on');
 
-				bd_li.siblings('.item').removeClass('on').end().eq(i).addClass('on');
+				item.addClass('on');
+				bd_li.siblings('.item').removeClass('on').end().eq(bd_i).addClass('on');
 
 			}
 
