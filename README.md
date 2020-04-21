@@ -1,4 +1,5 @@
 # 选择卡切换
-轻量级jQuery插件，功能癸
+轻量级jQuery插件，
+## 精美、灵活
 ## 预览
-![image](https://raw.github.com/shifawe/tabs/blob/master/img.png)
+
