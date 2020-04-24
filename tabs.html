@@ -1,75 +1,144 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>tables</title>
-	<script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.min.js"></script>
-	<script src="tabs.js"></script>
 
-	<link rel="stylesheet" href="tabs.css">
+<head>
+    <title>tables</title>
+    <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.min.js"></script>
+    <script src="tabs.js"></script>
+    <link rel="stylesheet" href="tabs.css">
 </head>
-<body style="padding-bottom: 50px;">
-	<div class="table table1">
-		<!-- <ul class="hd">
-			<li class="item">2018</li>
-			<li class="item">2019</li>
-		</ul> -->
-		<div class="bd">
-			<div class="item">内容 1</div>
-			<div class="item">内容 2</div>
-			<div class="item">内容 3</div>
-			<div class="item">内容 4</div>
-		</div>
-	</div>
-	<div class="table table2">
-		<div class="bd">
-			<div class="item">内容 1</div>
-			<div class="item">内容 2</div>
-			<div class="item">内容 3</div>
-			<div class="item">内容 4</div>
-		</div>
-	</div>
-	<div class="table table3">
-		<div class="bd">
-			<div class="item">内容 1</div>
-			<div class="item">内容 2</div>
-			<div class="item">内容 3</div>
-			<div class="item">内容 4</div>
-		</div>
-	</div>
-	<div class="table table4">
-		<div class="bd">
-			<div class="item">内容 1</div>
-			<div class="item">内容 2</div>
-			<div class="item">内容 3</div>
-			<div class="item">内容 4</div>
-		</div>
-	</div>
-	<script>
-		$(document).ready(function(){
-			$(".table1").Tables({
-				onindex: 1,
-				list:['全部信息']
-			});
-			$(".table2").Tables({
-				onindex: 3,
-				arrow: true,
-				timeout:300,
-				skin:'tab-orange'
-			});
-			$(".table3").Tables({
-				onindex: 2,
-				autoplay:4000,
-				arrow: true,
-				skin:'tab-violet',
-				list:['全部信息']
-			});
-			$(".table4").Tables({
-				onindex: 2,
-				event:'mouseover',
-				skin:'tab-green',
-				list:['全部信息']
-			});
-		})
-	</script>
+
+<body>
+    <div class="tabbox">
+        <div>
+            <div class="table table1">
+                <!-- <ul class="hd">
+									<li class="item">2018</li>
+									<li class="item">2019</li>
+								</ul> -->
+                <div class="bd">
+                    <div class="item">内容 1</div>
+                    <div class="item">内容 2</div>
+                    <div class="item">内容 3</div>
+                    <div class="item">内容 4</div>
+                </div>
+            </div>
+            <div class="table table2">
+                <div class="bd">
+                    <div class="item">内容 1</div>
+                    <div class="item">内容 2</div>
+                    <div class="item">内容 3</div>
+                    <div class="item">内容 4</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="table table3">
+                <div class="bd">
+                    <div class="item">内容 1</div>
+                    <div class="item">内容 2</div>
+                    <div class="item">内容 3</div>
+                    <div class="item">内容 4</div>
+                </div>
+            </div>
+            <div class="table table4">
+                <div class="bd">
+                    <div class="item">内容 1</div>
+                    <div class="item">内容 2</div>
+                    <div class="item">内容 3</div>
+                    <div class="item">内容 4</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="table table5">
+                <div class="bd">
+                    <div class="item">
+                    	<div class="img-cont">
+                    		<img src="images/1.jpg" alt="">
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="img-cont">
+                    		<img src="images/2.jpg" alt="">
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="img-cont">
+                    		<img src="images/3.jpg" alt="">
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="img-cont">
+                    		<img src="images/4.jpg" alt="">
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="img-cont">
+                    		<img src="images/5.jpg" alt="">
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="img-cont">
+                    		<img src="images/6.jpg" alt="">
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="img-cont">
+                    		<img src="images/7.jpg" alt="">
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="img-cont">
+                    		<img src="images/8.jpg" alt="">
+                    	</div>
+                    </div>
+                </div>
+            </div>
+            <div class="table table6">
+                <div class="bd">
+                    <div class="item">内容 1</div>
+                    <div class="item">内容 2</div>
+                    <div class="item">内容 3</div>
+                    <div class="item">内容 4</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function() {
+        $(".table1").Tables({
+            list: ['默认表格']
+        });
+        $(".table2").Tables({
+            onindex: 2,
+            timeout: 300,
+            skin: 'tab-green',
+            list:['延迟300ms','默认第2格']
+        });
+        $(".table3").Tables({
+            arrow:true,onindex:3,autoplay:4000,
+            skin: 'tab-orange',
+            list: ['自动轮播']
+        });
+        $(".table4").Tables({
+            event: 'mouseover',
+            skin: 'tab-green',
+            list: ['鼠标hover']
+        });
+        $(".table5").Tables({
+            onindex:3,
+            arrow: true,
+            autoplay: 4000,
+            skin: 'img-style fade-style',// img-style 图片播放模式 ，fade-style 淡入淡出模式
+            list: ['默认主题', '左右箭头','淡入淡出']
+        });
+        $(".table6").Tables({
+            skin: 'tab-violet',
+            list: ['回调函数']
+        });
+    })
+    </script>
 </body>
+
 </html>
