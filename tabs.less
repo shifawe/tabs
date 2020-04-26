@@ -15,7 +15,7 @@
 
 .table{
 	border:1px solid #1e88e5;.bc-d(500px);.box-shadow();font-size: 14px;
-	color:#333;.rel;
+	color:#333;.rel;overflow: hidden;
 	.hd{
 		.txt-ver(34px);.flex-box;background-color:#1e88e5;color:#fff;
 		box-shadow: 0 4px 2px -2px rgba(0,0,0,.14), 0 3px 5px -2px rgba(0,0,0,.12), 0 5px 1px -4px rgba(0,0,0,.2);
@@ -36,7 +36,7 @@
 	.bd{
 		height:200px;
 		.item{
-			padding:20px;display: none
+			padding:20px;display: none;
 		}
 		.on{
 			display: block;
@@ -54,6 +54,20 @@
 	.next{right:0;border-radius: 16px 0 0 16px}
 	&:hover{
 		.prev,.next{display: block;}
+	}
+}
+.slide{
+	.hd{
+		.abs;top:0;left:0;width:100%;z-index: 999;overflow: hidden;
+	}
+}
+.table-info{
+	height:100%;
+	.bd{
+		width:100%;.clearfix;.abs;left:0;top:0;height:100%;.transition(all ease-out .3s);
+		.item{
+			.fl;padding:0;
+		}
 	}
 }
 

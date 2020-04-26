@@ -9,15 +9,18 @@
 				list:[],
 				arrow: false,
 				skin: 'tab-default',
-				callback : null
+				callback : null,
+				slide: 300
 			}
 
 			$.extend(this.options, options);
 		
 			var _options = this.options;
 			var self = $(this);
-			var bd_li = self.find('.bd>.item');
+			var bd = self.find('.bd');
+			var bd_li = bd.find('.item');
 			var hd = $('<ul class="hd"></ul>');
+			var s_width = self.width()+2;
 			var timer;
 
 			_options.onindex = (_options.onindex > bd_li.length || _options.onindex < 1) ? bd_li.length : _options.onindex;
@@ -30,7 +33,11 @@
 
 				if(_options.onindex-1 == i){
 					hd.append('<li class="item on">'+_options.list[i]+'</li>');
-					bd_li.eq(i).addClass('on')
+					if(options.slide){
+						bd.css('left',-s_width*i)
+					}else{
+						bd_li.eq(i).addClass('on')
+					}
 				}else{
 					hd.append('<li class="item">'+_options.list[i]+'</li>');
 				}
@@ -38,6 +45,14 @@
 
 			options.skin && self.addClass(_options.skin);
 			self.prepend(hd);
+
+			if(options.slide){
+				self.addClass('slide')
+				var info = $('<div class="table-info"></div>');
+				bd_li.width(s_width);
+				info.width(s_width*bd_li.length).css('position','relative')
+				bd.wrap(info);
+			}
 
 			var tabHandle = function(ele) {
 				ele.siblings('.item').removeClass('on').end().addClass('on');
@@ -48,8 +63,18 @@
 				time ? setTimeout(function(){tabHandle(ele)}, time) : tabHandle(ele);
 			}
 
+			var run_slide = function(index,ele){
+				var l_width=-index * s_width;
+				delay(ele);
+				bd.stop(true,false).animate({'left' : l_width}, _options.slide);
+			}
+
 			hd.find('.item').on(_options.event, function(){
-				delay($(this), _options.timeout);
+				if(options.slide){
+					run_slide($(this).index(), $(this))
+				}else{
+					delay($(this), _options.timeout);
+				}
 				if( options.callback ){
 					options.callback( self );
 				}
@@ -83,16 +108,19 @@
 				current.removeClass('on');
 
 				item.addClass('on');
+	
 				bd_li.siblings('.item').removeClass('on').end().eq(bd_i).addClass('on');
+				if(options.slide){
+					bd.stop(true,false).animate({'left' : -bd_i*s_width}, _options.slide);
+				}
 
 			}
 
 			// 自动切换
 			function start(){
-				// if(!options.autoplay){return;}
-				timer = setInterval(function(){
-					run(1, 'next');
-				}, _options.autoplay );
+					timer = setInterval(function(){
+						run(1, 'next');
+					}, _options.autoplay );
 			}
 
 			if(_options.arrow == true) {
@@ -111,7 +139,7 @@
 			}
 
 			// 当用户传了 autoplay 值后
-			if(!!options.autoplay){
+			if(options.autoplay){
 				start();
 				self.hover(function(){
 					clearInterval(timer);
