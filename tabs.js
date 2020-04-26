@@ -8,7 +8,8 @@
 				autoplay: 4000,
 				list:[],
 				arrow: false,
-				skin: 'tab-default'
+				skin: 'tab-default',
+				callback : null
 			}
 
 			$.extend(this.options, options);
@@ -49,9 +50,12 @@
 
 			hd.find('.item').on(_options.event, function(){
 				delay($(this), _options.timeout);
+				if( options.callback ){
+					options.callback( self );
+				}
 			});
 
-			var play = function(idx, action){
+			var run = function(idx, action){
 				var current = hd.find('li.on');
 				var firstItem = hd.find('li.item').eq(0);
 				var len = hd.find('li.item').length;
@@ -85,8 +89,9 @@
 
 			// 自动切换
 			function start(){
+				// if(!options.autoplay){return;}
 				timer = setInterval(function(){
-					play(1, 'next');
+					run(1, 'next');
 				}, _options.autoplay );
 			}
 
@@ -97,20 +102,20 @@
 				self.append(btn_next);
 
 				btn_prev.on('click', function(){
-					play(-1, 'prev')
+					run(-1, 'prev')
 				});
 				btn_next.on('click', function(){
-					play(1, 'next')
+					run(1, 'next')
 				})
 
 			}
 
 			// 当用户传了 autoplay 值后
 			if(!!options.autoplay){
-				console.log(3)
 				start();
 				self.hover(function(){
 					clearInterval(timer);
+					timer = undefined;
 				}, function(){
 					start();
 				})
